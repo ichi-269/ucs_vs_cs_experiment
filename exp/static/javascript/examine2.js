@@ -1,25 +1,22 @@
-let file = '../static/material2.json';
+let file = '../static/material1.json';
 var user_data = [];
 var test_order = [];
 var current_sample_selection = [];
 var estimations = [];
-// let scenarios = shuffle(['one','two','three']);
-// let stimuli = shuffle(['stimuli_test','1','2']);
-let scenarios = shuffle(['one','two','three','four','five','six','seven','eight']);
-let stimuli = shuffle(['1','2','3','4','5','6','7','8']);
+let scenarios = shuffle(['one']);
+let stimuli = shuffle(['stimuli_test']);
+// let scenarios = shuffle(['one','two','three','four','five','six','seven','eight']);
+// let stimuli = shuffle(['1','2','3','4','5','6','7','8']);
 let bgcolors = shuffle(['#f0ffff','#f0fff0','#f5f5dc','#e0ffff','#fffaf0','#f8f8ff','#fffafa','#f5f5f5','#f0f8ff','#ffe4e1','#d8bfd8']);
 let image_type = ["p", "notp", "q", "notq"];
 let img_combination = {
     'a': {'cause': 'p', 'effect': 'q'},
     'b': {'cause': 'p', 'effect': 'notq'},
-    'm': {'cause': 'midp', 'effect': 'q'},
-    'n': {'cause': 'midp', 'effect': 'notq'},
     'c': {'cause': 'notp', 'effect': 'q'},
     'd': {'cause': 'notp', 'effect': 'notq'}
 }
 var current_test_page = 0; // 何事例目か
 var sample_size = 0; // 現在の設問の事例の総数
-var user_id = 0;
 var start_time = getNow();
 var sce_idx = 0;  // 動物の判別
 var est_i = 0;
@@ -28,16 +25,16 @@ var cell_size = 0;
 // read_json(): jsonファイルを読み込む
 // getImages(): 画像のプリロード
 // to_next_scenario_description(): シナリオの表示
+
 window.onload = function() {
-    // ランダム数列の発行
-    user_id = Math.round(Math.random() * 100000000);
-    user_id = zeroPadding(user_id, 8);
+    // user_id の取得と設定
+    var user_id = getUserID();
+
     test_order = read_json(file);
     estimations = new Array();
     getImages();
     to_next_scenario_description(is_first_time=true);
 }
-
 window.onbeforeunload = function(e) {
     e.returnValue = "ページを離れると、これまで入力した内容は全て破棄されます。ページを離れてもよろしいですか？";
 }
@@ -319,4 +316,11 @@ function changeBackGround(){
 // backgroundColorをリセットする関数
 function resetBackGround(){
     document.body.style.backgroundColor = 'Transparent';
+}
+
+// クエリパラメータから user_id を取得し変数に代入
+function getUserID() {
+    const urlParams = new URLSearchParams(window.location.search);
+    user_id = urlParams.get('id'); // クエリパラメータ 'id' から user_id を取得
+    return user_id;
 }

@@ -12,8 +12,6 @@ let image_type = ["p", "notp", "q", "notq"];
 let img_combination = {
     'a': {'cause': 'p', 'effect': 'q'},
     'b': {'cause': 'p', 'effect': 'notq'},
-    'm': {'cause': 'midp', 'effect': 'q'},
-    'n': {'cause': 'midp', 'effect': 'notq'},
     'c': {'cause': 'notp', 'effect': 'q'},
     'd': {'cause': 'notp', 'effect': 'notq'}
 }
@@ -265,7 +263,7 @@ function export_results() {
         },
         timeout: 50000
     }).done(function (response) {
-        location.href = `../end?id=${user_id}`;
+        location.href = `../examine2?id=${user_id}`;
     }).fail(function (jqXHR, textStatus, errorThrown) {
         alert("回答送信中にエラーが発生しました。もう一度終了ボタンを押してください。");
         document.getElementById('finish_all_scenarios').removeAttribute("disabled");
