@@ -61,3 +61,34 @@ def send():
         import traceback
         traceback.print_exc()
         return Response(status=500)
+    
+@app.route('/send_imc', methods=['POST'])
+def send_imc():
+    try:
+        # リクエストデータを辞書形式に変換
+        raw_data = request.form.to_dict()
+        suffix = raw_data.get("file_name_suffix", "default")  # サフィックスがない場合のデフォルト値
+
+        # 必要なデータセット（user_data のみ）
+        if "user_data" in raw_data:
+            user_data = json.loads(raw_data["user_data"])  # JSONデコード
+            file_name = "user_data_" + suffix + ".csv"  # ファイル名を生成
+            filepath = os.path.join('.', file_name)
+
+            # ファイルが存在しない場合はヘッダーを追加
+            if not os.path.exists(filepath):
+                with open(filepath, 'w', newline='', encoding='utf-8') as f:
+                    writer = csv.DictWriter(f, user_data[0].keys())
+                    writer.writeheader()
+
+            # データを追記
+            with open(filepath, 'a', newline='', encoding='utf-8') as f:
+                writer = csv.DictWriter(f, user_data[0].keys())
+                writer.writerows(user_data)
+
+        return Response(status=200)
+
+    except Exception as e:
+        import traceback
+        traceback.print_exc()
+        return Response(status=500)
