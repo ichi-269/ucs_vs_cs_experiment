@@ -25,9 +25,12 @@ function get_value() {
         selectedOptions.push(checkbox.value);
     });
 
-    // result を空か否かで設定
-    result = selectedOptions.length > 0;
-    console.log("チェックボックスが選択されているか:", result); // デバッグ用
+    // "野球"と"その他"が両方選択されている場合にTrue、それ以外はFalse
+    if (selectedOptions.includes("野球") && selectedOptions.includes("その他")) {
+        result = true;
+    } else {
+        result = false;
+    }
 }
 
 

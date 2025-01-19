@@ -4,22 +4,22 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/examine.css') }}"/>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/top.css') }}"/>
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="{{ url_for('static', filename='javascript/examine2.js') }}"></script>
     <title>回答ページ</title>
 </head>
 
 <body>
-    <div id="header_area">
+    <div id="start_area">
         <div id="scenario_title" class="title"></div>
         <div id="page"></div>
+    <h1 id="start_message">あなたの日常的なスポーツ活動に関する質問です。</h1>
     </div>
-    <h1>あなたの日常的なスポーツ活動に関する質問です。</h1>
     <p>
-        以下の説明をよく読んで、お答え下さい。今回の調査は、意思決定過程を研究することが目的の調査であり、こうした説明文が時間をかけてよく読まれているかどうかが重要な意味を持ちます。
+        以下の説明をよく読んで、お答え下さい。今回の調査は、推論の過程を研究することが目的の調査であり、こうした説明文が時間をかけてよく読まれているかどうかが重要な意味を持ちます。
         つきましては大変失礼なお願いなのですが、あなたがこの説明文をきちんと読んでいるかどうかを確認させてください。
-        この説明文を読んだら、以下の質問は無視して何も回答せず（つまり、どの選択肢もクリックせず）、次のページに進んでください。
+        この説明文を読んだら、以下の質問で野球とその他を選択し、次のページに進んでください。
     </p>
 
     <div class="question">
