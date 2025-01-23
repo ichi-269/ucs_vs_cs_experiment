@@ -19,19 +19,6 @@ function get_value_fin() {
     get_value();
     export_results();
 }
-// function get_value() {
-//     let selectedOptions = [];
-//     document.querySelectorAll('input[name="sports"]:checked').forEach(function(checkbox) {
-//         selectedOptions.push(checkbox.value);
-//     });
-
-//     // "野球"と"水泳"と"その他"が両方選択されている場合にTrue、それ以外はFalse
-//     if (selectedOptions.includes("野球") && selectedOptions.includes("水泳") && selectedOptions.includes("その他")) {
-//         result = true;
-//     } else {
-//         result = false;
-//     }
-// }
 function get_value() {
     let selectedOptions = [];
     document.querySelectorAll('input[name="sports"]:checked').forEach(function(checkbox) {
