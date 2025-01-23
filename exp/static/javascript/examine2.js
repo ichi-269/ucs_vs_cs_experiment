@@ -19,24 +19,35 @@ function get_value_fin() {
     get_value();
     export_results();
 }
+// function get_value() {
+//     let selectedOptions = [];
+//     document.querySelectorAll('input[name="sports"]:checked').forEach(function(checkbox) {
+//         selectedOptions.push(checkbox.value);
+//     });
+
+//     // "野球"と"水泳"と"その他"が両方選択されている場合にTrue、それ以外はFalse
+//     if (selectedOptions.includes("野球") && selectedOptions.includes("水泳") && selectedOptions.includes("その他")) {
+//         result = true;
+//     } else {
+//         result = false;
+//     }
+// }
 function get_value() {
     let selectedOptions = [];
     document.querySelectorAll('input[name="sports"]:checked').forEach(function(checkbox) {
         selectedOptions.push(checkbox.value);
     });
 
-    // "野球"と"その他"が両方選択されている場合にTrue、それ以外はFalse
-    if (selectedOptions.includes("野球") && selectedOptions.includes("その他")) {
-        result = true;
-    } else {
-        result = false;
-    }
+    // 選択結果が「野球」「水泳」「その他」のみか判定
+    const validSelection = ["野球", "水泳", "その他"];
+    result = selectedOptions.length === validSelection.length &&
+             selectedOptions.every(option => validSelection.includes(option));
 }
 
 
 function export_results() {
     if (!user_id) {
-        alert("ユーザーIDが取得できません。");
+        alert("ユーザーIDが取得できません。対応しますのでクラウドワークスから不具合を報告してください。");
         return;
     }
 
